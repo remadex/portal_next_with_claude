@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 
-export default {
+const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -14,5 +14,23 @@ export default {
       },
     },
   },
-  plugins: [],
-} satisfies Config;
+  plugins: [require("daisyui"), require("@tailwindcss/typography")],
+  daisyui: {
+    themes: [
+      "light",
+      "dark",
+      "cupcake",
+      "cyberpunk",
+      "synthwave",
+      {
+        light: {
+          ...require("daisyui/src/theming/themes")["[data-theme=light]"],
+          primary: "#570df8",
+          "primary-content": "#ffffff",
+        },
+      },
+    ],
+  },
+};
+
+export default config;
